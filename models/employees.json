@@ -1,0 +1,16 @@
+[
+    {
+        "id" : 1,
+        "fullName" : "Hamza Rashed",
+        "phoneNumber" : "0797586614",
+        "email" : "hrashed@teamenova.com",
+        "password" : "12345"
+    },
+    {
+        "id" : 2,
+        "fullName" : "Aboda Rashed",
+        "phoneNumber" : "0777777777",
+        "email" : "aboda@teamenova.com",
+        "password" : "12345"
+    }
+]
