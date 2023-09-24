@@ -22,7 +22,7 @@ let handleNewRegister = async (req, res) => {
     // Hashed the paswsword
     let hashedPass = await bcrypt.hash(password , 10)
 
-    // The new usaer after hashiong the password
+    // The new user after hashing the password
     let userToAdded = {
         fullName : fullName,
         email : email,

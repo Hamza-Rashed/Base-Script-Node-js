@@ -4,6 +4,7 @@ const config = require("./config/configration");
 const path = require("path");
 const app = express();
 const verfiedJWT = require("./middleware/VerfiedJWT");
+const cookieParser = require("cookie-parser")
 
 const paths = {
     public : path.join(__dirname , '/Public'),
@@ -11,11 +12,14 @@ const paths = {
     employees : require("./routes/api/employees"),
     students : require("./routes/api/students"),
     register: require('./routes/api/register'),
-    login: require("./routes/api/login")
+    login: require("./routes/api/login"),
+    refresh: require("./routes/api/refresh"),
+    logout: require("./routes/api/logout")
 }
 
     app.use(express.json())
     app.use(express.urlencoded({extended: true}))
+    app.use(cookieParser())
 
 
     app.use('/', express.static(paths.public))
@@ -28,6 +32,8 @@ const paths = {
     app.use('/', paths.root)
     app.use('/register', paths.register)
     app.use('/login', paths.login)
+    app.use('/refresh', paths.refresh)
+    app.use('/logout', paths.logout)
 
     // All Routes Here will be verfied before access to the data
     app.use(verfiedJWT)

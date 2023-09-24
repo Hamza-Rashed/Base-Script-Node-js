@@ -48,7 +48,7 @@ let hundleLoginUser = async (req, res) => {
         let otherUsers = userDB.users.filter(res => res.email !== userRequested.email)
 
         // Provide the access token to the current user
-        let currentUser = {...userRequested, accessToken}
+        let currentUser = {...userRequested, refreshToken}
         
         // Add the current user again with his token to the Orignal data
         userDB.setUser([...otherUsers , currentUser]);
@@ -59,7 +59,7 @@ let hundleLoginUser = async (req, res) => {
         )
 
         // Store the refresh token in the Cookie with httpOnly because it more safe and it's not accessible by Java Script 
-        res.cookie('jwt', refreshToken, {httpOnly:true, maxAge: 24 * 60 * 60 * 1000})
+        res.cookie('jwt', refreshToken, {httpOnly:true, sameSite: 'None', secure:true ,maxAge: 24 * 60 * 60 * 1000})
 
         res.status(200).json({
             msg: `Welcome ${fullName} and your token is ${accessToken}`
